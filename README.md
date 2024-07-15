@@ -9,30 +9,10 @@ You'll also need streamlit-chat, which provides a chat UI component for Streamli
 
 bash
 pip install streamlit-chat
-Step 2: Backend Setup
-For this example, we'll simulate a backend service using a simple Flask server. Create a new Python file (backend.py) with the following content:
 
-python
-from flask import Flask, jsonify, request
 
-app = Flask(__name__)
 
-@app.route('/chatbot', methods=['POST'])
-def chatbot():
-    data = request.json
-    user_message = data['message']
-    # Replace this logic with your actual chatbot processing
-    response = f"Echo: {user_message}"
-    return jsonify({'message': response})
-
-if __name__ == '__main__':
-    app.run(debug=True)
-Run this Flask server using:
-
-bash
-Copy code
-python backend.py
-Step 3: Streamlit Chatbot UI
+Step 2: Streamlit Chatbot UI
 Create a Streamlit app (app.py) for the front-end:
 
 python
@@ -40,9 +20,8 @@ import streamlit as st
 from streamlit_chat import st_chatbot
 import requests
 
-# URL of the backend Flask server
-BACKEND_URL = 'http://localhost:5000/chatbot'
 
+bash
 def send_message(message):
     response = requests.post(BACKEND_URL, json={'message': message})
     return response.json()['message']
@@ -60,7 +39,7 @@ def main():
 
 if __name__ == '__main__':
     main()
-Step 4: Running the Streamlit App
+Step 3: Running the Streamlit App
 Run your Streamlit app using:
 
 bash
